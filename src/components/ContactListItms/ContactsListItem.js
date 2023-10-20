@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux"
 import { ListItems,
          ListText,
          ListBtn } from "./ContactsListItem.styled"
-import { deleteContact } from "redux/operations"
+import { deleteContact } from "redux/contacts/operations"
 
 export const ContactsListItem = ({contact}) => {
    const dispatch = useDispatch()
