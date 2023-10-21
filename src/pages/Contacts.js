@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchContacts } from "redux/contacts/operations";
 import { selectLoading } from "redux/contacts/selectors";
+import { ContactsInfo } from "./Contacts.styled";
 
 export default function Contacts() {
     const dispatch = useDispatch();
@@ -17,14 +18,13 @@ export default function Contacts() {
     }, [dispatch]);
   
     return (
-      <>
-    
-          <title>Contacts</title>
-   
+      <ContactsInfo>
         <ContactForm />
+        <div>
         <ContactFilter />
-        <div>{isLoading && <Loader/>}</div>
+        {isLoading && <Loader/>}
         <ContactList />
-      </>
+        </div>
+      </ContactsInfo>
     );
   }

@@ -8,6 +8,7 @@ import { FormContact,
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
 import { selectContacts } from 'redux/contacts/selectors';
+import toast from 'react-hot-toast';
 
 
 const FormSchema = Yup.object().shape({
@@ -42,7 +43,10 @@ export const ContactForm = () => {
             );
             
             if (isContactName) {
-              alert(`${values.name} is already in contacts.`);
+              toast.error(
+                `${values.name} is already in contacts!`,{
+                  duration: 4000,
+              });
               return;
             }
         
@@ -51,7 +55,10 @@ export const ContactForm = () => {
             );
         
             if (isContactNumber) {
-              alert(`${values.number} is already in contacts.`);
+              toast.error(
+                `${values.number} is already in contacts!`,{
+                  duration: 4000,
+              });
               return;
             }
 

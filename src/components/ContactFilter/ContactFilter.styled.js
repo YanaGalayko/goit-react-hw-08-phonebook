@@ -1,8 +1,5 @@
 import styled from 'styled-components';
 
-export const FilterContainer = styled.div`
-  margin-bottom: 20px;`;
-
 export const FilterText = styled.p`
   font-size: 20px;
   font-weight: 400;
