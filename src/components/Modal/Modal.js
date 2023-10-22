@@ -1,13 +1,12 @@
 import Modal from 'react-modal';
-import { 
-    // ErrorMessage, Field, 
-    Formik } from "formik";
+import { Formik } from "formik";
 import { useDispatch } from 'react-redux';
 import { editContact } from 'redux/contacts/operations';
 import { FormSchema } from 'components/ContactForm/ContactForm';
 import { FormContact, FormLabel, FormInput, FormError } from 'components/ContactForm/ContactForm.styled';
-import { FcOk , FcCancel } from 'react-icons/fc';
-import { ModalBox, ModalBtn, ModalBtnBox } from './Modal.styled';
+import { ModalBox, 
+  ModalBtn, 
+  ModalBtnBox } from './Modal.styled';
 
 Modal.setAppElement('#root');
 export const customStyles = {
@@ -30,49 +29,40 @@ export const ModalWindow = ({ isOpen, contact, onClose }) => {
       };
     
       const dispatch = useDispatch();
-    
-      const handleSave = (values) => {
-        dispatch(editContact(values));
-        onClose();
-        console.log(values);
-    };
+
       return (
-     <>
      <Modal
         isOpen={isOpen}
         onClose={onClose}
         style={customStyles}>
             <ModalBox>
             <h2>Edit Contact</h2>
-            <>
                <Formik
                 initialValues={initialValues}
                 validationSchema={FormSchema}
-                onSubmit={handleSave}
+                onSubmit={(values) => {
+                  dispatch(editContact(values));
+                  onClose();
+              }} 
                 >
                <FormContact>
-              <FormLabel>
-                    Name
+                <div>
+                <FormLabel>Name</FormLabel>
                 <FormInput type="text" name="name" placeholder="Enter name"/>
                 <FormError name="name" component="div" />
-              </FormLabel>
-              <FormLabel>
-                    Number
+                </div>
+                 <div>
+                 <FormLabel>Number</FormLabel>
                 <FormInput type="tel" name="number" placeholder="Enter phone"/>
                 <FormError name="number" component="div" />
-              </FormLabel>
-    
-            </FormContact> 
-              
-                </Formik>
-            </>
-            
+                </div>
                 <ModalBtnBox>
-               <ModalBtn type="submit"><FcOk size={20}/> save </ModalBtn>
-               <ModalBtn onClick={onClose}><FcCancel size={20}/> cansel</ModalBtn>              
+               <ModalBtn type="submit">Change</ModalBtn>
+               <ModalBtn onClick={onClose}>Cansel</ModalBtn>              
               </ModalBtnBox>
-            </ModalBox>
+            </FormContact> 
+                </Formik>
+              </ModalBox>
         </Modal>
-     </>
       );
     }
