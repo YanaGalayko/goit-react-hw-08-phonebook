@@ -2,10 +2,8 @@ import styled from 'styled-components';
 
 export const ListItems = styled.li`
   display: flex;
-  gap: 20px;
-  border: 1px solid black;
+  gap: 10px;
   width: 350px;
-  border-radius: 8px;
 `;
 
 export const ListText = styled.p`
@@ -15,18 +13,16 @@ export const ListText = styled.p`
 `;
 
 export const ListBtn = styled.button`
-   background: #ADD8E6;
+   background: white;
    border-radius: 8px;
-   border: 2px solid black;
+   border: 1px solid transparent;
    font-size: 14px;
    font-weight: 400;
    padding: 5px 5px;
 
    &:hover {
-    background: #87CEEB;
-   }
-
-   &:focus {
-    background: #87CEEB;
+    background-color: #709cb3;
+    box-shadow: 0 0 10px #008296, 0 0 20px #00b2b2, 0 0 40px #008296;
+    color: #e6dc55;
    }
    `;

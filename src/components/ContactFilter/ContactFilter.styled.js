@@ -11,4 +11,5 @@ export const FilterInputn = styled.input`
   border-radius: 8px;
   border: 2px solid black;
   background: #F0F8FF;
+  margin-bottom: 30px;
 `;

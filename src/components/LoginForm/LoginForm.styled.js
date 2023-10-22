@@ -11,7 +11,6 @@ align-items: center;
 padding: 20px;
 margin-top: 40px;
 border-radius: 10px;
-
 box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, inset 14px 14px 15px 11px rgba(255,255,255,0);
 `;
 

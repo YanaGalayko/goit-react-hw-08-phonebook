@@ -4,14 +4,15 @@ import { FormContact,
          FormLabel,
          FormInput, 
          FormBtn, 
-         FormError } from './ContactForm.styled';
+         FormError, 
+         BookContainer} from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
 import { selectContacts } from 'redux/contacts/selectors';
 import toast from 'react-hot-toast';
 
 
-const FormSchema = Yup.object().shape({
+export const FormSchema = Yup.object().shape({
     name: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
@@ -34,7 +35,9 @@ export const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
     return (
-        <Formik
+      <BookContainer>
+      <h2>Phonebook</h2>
+              <Formik
           initialValues={{ name: '', number: '' }}
           validationSchema={FormSchema}
           onSubmit={(values, actions) => {
@@ -69,12 +72,12 @@ export const ContactForm = () => {
             <FormContact>
               <FormLabel>
                     Name
-                <FormInput type="text" name="name" placeholder="Enter your name"/>
+                <FormInput type="text" name="name" placeholder="Enter name"/>
                 <FormError name="name" component="div" />
               </FormLabel>
               <FormLabel>
                     Number
-                <FormInput type="tel" name="number" placeholder="Enter your phone"/>
+                <FormInput type="tel" name="number" placeholder="Enter phone"/>
                 <FormError name="number" component="div" />
               </FormLabel>
               <FormBtn type="submit">
@@ -82,5 +85,7 @@ export const ContactForm = () => {
               </FormBtn>
             </FormContact>
         </Formik>
+      </BookContainer>
+
     )
 }

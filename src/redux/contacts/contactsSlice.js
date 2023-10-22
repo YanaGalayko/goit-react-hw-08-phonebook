@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addContact, fetchContacts, deleteContact } from './operations';
+import { addContact, fetchContacts, deleteContact, editContact } from './operations';
 import { logOutUser } from 'redux/auth/operations';
 
 
@@ -54,10 +54,34 @@ const contactsSlice = createSlice({
       state.isError = action.payload;
     },
 
+    // LOGOUT
+
     [logOutUser.fulfilled](state) {
       state.contacts = [];
       state.isLoading = false;
       state.isError = false;
+    },
+
+    // EDIT
+
+    [editContact.pending](state) {
+      state.isLoading = true;
+    },
+
+    [editContact.fulfilled](state, action) {
+      state.isLoading = false;
+      state.isError = null;
+      state.contacts = state.contacts.map(contact => {
+        if (contact.id === action.payload.id) {
+          return action.payload;
+        }
+        return contact;
+      });
+    },
+
+    [editContact.rejected](state, action) {
+      state.isLoading = false;
+      state.isError = action.payload;
     },
   },
 });
